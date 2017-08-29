@@ -25,11 +25,31 @@ var Application = function () {
     }
   }, {
     key: 'addRoute',
-    value: function addRoute(path, handler) {
+    value: function addRoute(path, Controller) {
+      var _this = this;
+
       this.server.route({
         path: path,
         method: 'GET',
-        handler: handler
+        handler: function handler(request, reply) {
+          var controller = new Controller({
+            query: request.query,
+            params: request.params
+          });
+
+          controller.index(_this, request, reply, function (err) {
+            if (err) {
+              return reply(err);
+            }
+
+            controller.toString(function (err, html) {
+              if (err) {
+                return reply(err);
+              }
+              reply(html);
+            });
+          });
+        }
       });
     }
   }, {

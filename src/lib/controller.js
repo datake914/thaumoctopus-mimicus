@@ -1,4 +1,4 @@
-export default Controller {
+export default class Controller {
 
   constructor(context) {
     this.context = context;

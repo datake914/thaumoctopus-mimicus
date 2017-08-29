@@ -16,14 +16,14 @@ export default class Application {
       path: path,
       method: 'GET',
       handler: (request, reply) => {
-        new Controller({
+        const controller = new Controller({
           query: request.query,
           params: request.params
-        })
+        });
 
         controller.index(this, request, reply, (err) => {
           if (err) {
-            return reply(err)
+            return reply(err);
           }
 
           controller.toString((err, html) => {
@@ -31,10 +31,10 @@ export default class Application {
               return reply(err);
             }
             reply(html)
-          })
-        })
+          });
+        });
       }
-    })
+    });
   }
 
   start() {

@@ -12,11 +12,7 @@ server.connection({
 });
 
 const application = new Application({
-  '/': function(request, reply) {
-    nunjucks.render('index.html', getName(request), function(err, html) {
-      reply(html);
-    });
-  }
+  '/': Controller
 }, {
   server: server
 })
