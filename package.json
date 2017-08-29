@@ -1,0 +1,30 @@
+{
+  "name": "thaumoctopus-mimicus",
+  "version": "0.0.0",
+  "description": "Sample of isomorphic javascript application.",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/datake914/thaumoctopus-mimicus.git"
+  },
+  "author": "H.Takeda",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/datake914/thaumoctopus-mimicus/issues"
+  },
+  "homepage": "https://github.com/datake914/thaumoctopus-mimicus#readme",
+  "dependencies": {
+    "hapi": "^16.5.2",
+    "nunjucks": "^3.0.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "glup": "^1.0.14",
+    "gulp-nodemon": "^2.2.1",
+    "run-sequence": "^2.1.0"
+  }
+}
