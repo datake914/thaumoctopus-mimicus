@@ -12,9 +12,9 @@ var _lib = require('./lib');
 
 var _lib2 = _interopRequireDefault(_lib);
 
-var _controller = require('./lib/controller');
+var _helloController = require('./hello-controller');
 
-var _controller2 = _interopRequireDefault(_controller);
+var _helloController2 = _interopRequireDefault(_helloController);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -27,7 +27,7 @@ server.connection({
 });
 
 var application = new _lib2.default({
-  '/': _controller2.default
+  '/hello/{name*}': _helloController2.default
 }, {
   server: server
 });
@@ -45,17 +45,3 @@ application.start();
 // });
 //
 // server.start();
-
-function getName(request) {
-  var name = {
-    fname: 'Rick',
-    lname: 'Sanchez'
-  };
-
-  var nameParts = request.params.name ? request.params.name.split('/') : [];
-
-  name.fname = nameParts[0] || request.query.fname || name.fname;
-  name.lname = nameParts[1] || request.query.lname || name.lname;
-
-  return name;
-}
