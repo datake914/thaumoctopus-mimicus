@@ -36,7 +36,7 @@ var HelloController = function (_Controller) {
   _createClass(HelloController, [{
     key: 'toString',
     value: function toString(callback) {
-      _nunjucks2.default.render('index.html', getName(this.context), function (err, html) {
+      _nunjucks2.default.renderString('<p>hello {{fname}} {{lname}}</p>', getName(this.context), function (err, html) {
         if (err) {
           return callback(err, null);
         }

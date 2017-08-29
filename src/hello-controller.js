@@ -4,8 +4,9 @@ import nunjucks from 'nunjucks';
 nunjucks.configure('./dist');
 
 export default class HelloController extends Controller {
+
   toString(callback) {
-    nunjucks.render('index.html', getName(this.context), (err, html) => {
+    nunjucks.renderString('<p>hello {{fname}} {{lname}}</p>', getName(this.context), (err, html) => {
       if (err) {
         return callback(err, null);
       }
@@ -13,6 +14,7 @@ export default class HelloController extends Controller {
     });
   }
 }
+
 
 function getName(request) {
   let name = {

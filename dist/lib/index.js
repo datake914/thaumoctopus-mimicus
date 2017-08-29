@@ -13,6 +13,7 @@ var Application = function () {
     _classCallCheck(this, Application);
 
     this.server = options.server;
+    this.document = options.document;
     this.registerRoutes(routes);
   }
 
@@ -46,7 +47,14 @@ var Application = function () {
               if (err) {
                 return reply(err);
               }
-              reply(html);
+
+              _this.document(_this, controller, request, reply, html, function (err, html) {
+                if (err) {
+                  return reply(err);
+                }
+
+                reply(html);
+              });
             });
           });
         }
