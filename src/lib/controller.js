@@ -11,4 +11,14 @@ export default class Controller {
   toString(callback) {
     callback(null, 'Success');
   }
+
+  render(target, callback) {
+    this.toString(function(err, body) {
+      if (err) {
+        return callback(err, null);
+      }
+      ducument.querySelector(target).innerHTML = body;
+      callback(null, body);
+    });
+  }
 }

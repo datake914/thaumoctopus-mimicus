@@ -27,7 +27,7 @@ export default class Application {
 
     let urlParts = url.split('?');
     let [path, search] = urlParts;
-    let match = this.router.route('get', path);
+    let match = this.router.route('GET', path);
     let {
       route,
       params
@@ -38,7 +38,17 @@ export default class Application {
       const controller = new Controller({
         query: query.parse(search),
         params: params
+      });
+
+      const request = () => {};
+      const reply = () => {};
+
+      controller.index(this, request, reply, (err) => {
+        if (err) {
+          return reply(err);
+        }
       })
+
     }
 
     console.log(url);
