@@ -3,6 +3,8 @@ import Application from './lib';
 import HelloController from './hello-controller';
 import nunjucks from 'nunjucks';
 
+const APP_FILE_PATH = '/application.js'
+
 nunjucks.configure('./dist');
 
 const server = new Hapi.Server();
@@ -12,12 +14,13 @@ server.connection({
 });
 
 const application = new Application({
-  '/hello/{name*}': HelloController
+  '/{name*}': HelloController
 }, {
   server: server,
   document: function(application, controller, request, reply, body, callback) {
     nunjucks.render('./index.html', {
-      body: body
+      body: body,
+      application: APP_FILE_PATH
     }, (err, html) => {
       if (err) {
         return callback(err, null);
@@ -26,5 +29,13 @@ const application = new Application({
     });
   }
 });
+
+server.route({
+  method: 'GET',
+  path: APP_FILE_PATH,
+  handler: (request, reply) => {
+    reply.file('dist/build/application.js');
+  }
+})
 
 application.start();
